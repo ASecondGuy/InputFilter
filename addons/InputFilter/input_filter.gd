@@ -1,6 +1,9 @@
 class_name InputFilter extends Reference
+# Can be used like Input but ignores unwantet input events.
+# This allows easy management for many players in local mp.
+#
 # How it works:
-# the InputFilter is a replacement for Input
+# the InputFilter somewhat a replacement for Input
 # get_axis() and simmilar functions will ignore inputs for other players but
 # all buttons can still be in general actions like left/right
 # That is because the InputFilter ignores the inputs that aren't on the right device
@@ -12,7 +15,7 @@ class_name InputFilter extends Reference
 
 # filters devices easily
 export var devide_id := -1
-# prevents a mixups when more than 1 scheme is on the same controler
+# prevents mix ups with multiple schemes per controler
 export var input_group := "scheme_0"
 
 var _buffer := {}
@@ -22,16 +25,17 @@ var _just_pressed_buffer := []
 var _just_released_buffer := []
 
 
-func _init(tree:SceneTree, device:= devide_id, group:=input_group):
+func _init(device:= devide_id, group:=input_group):
 	devide_id = device
 	input_group = group
-	tree.connect("idle_frame", self, "_on_idle_frame")
 
-func _on_idle_frame():
+
+func flush():
 	_just_pressed = _just_pressed_buffer
 	_just_released = _just_released_buffer
 	_just_pressed_buffer = []
 	_just_released_buffer = []
+
 
 func parse_input(event: InputEvent):
 	if is_event_caught(event):
@@ -51,6 +55,7 @@ func _parse_event(event: InputEvent):
 		if action is String:
 			if event.is_action(action):
 				var strenght := event.get_action_strength(action)
+				
 				if InputMap.action_get_deadzone(action) > strenght:
 					_buffer.erase(action)
 					_just_released_buffer.push_back(action)
