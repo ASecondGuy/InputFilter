@@ -45,8 +45,9 @@ func parse_input(event: InputEvent):
 func is_event_caught(event: InputEvent)->bool:
 	if devide_id > 0 and event.device != devide_id:
 		return false
-	if !event.is_action(input_group):
-		return false
+	if !input_group.empty():
+		if !event.is_action(input_group):
+			return false
 	return true
 
 
