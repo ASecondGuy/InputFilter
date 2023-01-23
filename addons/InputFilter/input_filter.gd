@@ -25,7 +25,7 @@ var _just_pressed_buffer := []
 var _just_released_buffer := []
 
 
-func _init(device:= devide_id, group:=input_group):
+func _init(device := devide_id, group := input_group):
 	devide_id = device
 	input_group = group
 
@@ -72,12 +72,12 @@ func get_axis(negative_action: String, positive_action: String):
 	return _buffer.get(positive_action, 0) - _buffer.get(negative_action, 0)
 
 
-func is_action_just_released(action:String):
+func is_action_just_released(action: String):
 	return _just_released.has(action)
 
-func is_action_just_pressed(action:String):
+func is_action_just_pressed(action: String):
 	return _just_pressed.has(action)
 
-func is_action_pressed(action:String):
+func is_action_pressed(action: String):
 	return _buffer.get(action, 0) > .49
 
