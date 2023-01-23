@@ -24,3 +24,8 @@ The InputFilter makes it easy to distinguisch inputs from different controlers a
    Then put all buttons in a group (ex. WASD in "scheme_0" and the arrow buttons into "scheme_1"). If you use the device filter you can even reuse those groups for the controler schemes (ex. WASD & left joystick)
 4. Make sure you use the correct InputFilters and have them configured with the right scheme group and device id (or "" and -1 to disable thse filter options).
 
+# Example
+The example will only work with correctly setup input actions.  
+The Players will use move_left, move_right, move_up and move_down. The example supports 10 schemes named `scheme_0` to `scheme_9`.  
+This is an example setup: ![](screenshot/input_map.png)
+It will spawn 1 player for each stick on each controler.
