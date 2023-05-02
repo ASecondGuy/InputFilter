@@ -5,10 +5,8 @@ var _input_filter := InputFilter.new(-1, "")
 
 func _process(delta):
 	_input_filter.flush()
-	var move := Vector2(
-		_input_filter.get_axis("move_left", "move_right"),
-		_input_filter.get_axis("move_up", "move_down")
-	)
+	var move := _input_filter.get_vector("move_left", "move_right", "move_up", "move_down")
+	
 	position += move.normalized()*delta*100
 
 

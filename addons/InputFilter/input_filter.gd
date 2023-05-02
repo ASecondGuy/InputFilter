@@ -82,6 +82,11 @@ func is_action_just_pressed(action: String):
 func is_action_pressed(action: String):
 	return _buffer.get(action, 0) > .49
 
+func get_vector(negative_x:StringName, positive_x:StringName, negative_y:StringName, positive_y:StringName)->Vector2:
+	return Vector2(
+		get_axis(negative_x, positive_x),
+		get_axis(negative_y, positive_y)
+	)
 
 # QOL functions
 func is_equal(to:InputFilter) -> bool:
