@@ -1,4 +1,4 @@
-class_name InputFilter extends Reference
+class_name InputFilter extends RefCounted
 # Can be used like Input but ignores unwantet input events.
 # This allows easy management for many players in local mp.
 #
@@ -14,9 +14,9 @@ class_name InputFilter extends Reference
 
 
 # filters devices easily
-export var devide_id := -1
+@export var devide_id := -1
 # prevents mix ups with multiple schemes per controler
-export var input_group := "scheme_0"
+@export var input_group := "scheme_0"
 
 var _buffer := {}
 var _just_pressed := []
@@ -45,7 +45,7 @@ func parse_input(event: InputEvent):
 func is_event_caught(event: InputEvent)->bool:
 	if devide_id > 0 and event.device != devide_id:
 		return false
-	if !input_group.empty():
+	if !input_group.is_empty():
 		if !event.is_action(input_group):
 			return false
 	return true

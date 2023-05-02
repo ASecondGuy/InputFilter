@@ -31,7 +31,7 @@ func _input(event):
 func _new_player(scheme: String, device: int):
 	var filter := InputFilter.new(device, scheme)
 	_filters.push_back(filter)
-	var player := preload("res://addons/InputFilter/example/filtered_player.tscn").instance()
+	var player := preload("res://addons/InputFilter/example/filtered_player.tscn").instantiate()
 	player.set_filter(filter)
 	add_child(player)
-	player.position = OS.window_size/2
+	player.position = get_window().size/2
