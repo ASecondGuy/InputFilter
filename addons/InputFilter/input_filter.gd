@@ -51,6 +51,7 @@ func is_event_caught(event: InputEvent)->bool:
 	return true
 
 
+# write an event into the buffers. !THIS DOESN'T FILTER! Use parse_input() for filter functionality
 func _parse_event(event: InputEvent):
 	for action in InputMap.get_actions():
 		if action is String:
@@ -68,7 +69,7 @@ func _parse_event(event: InputEvent):
 
 
 # emulated Input functions
-func get_axis(negative_action: String, positive_action: String):
+func get_axis(negative_action: String, positive_action: String) -> float:
 	return _buffer.get(positive_action, 0) - _buffer.get(negative_action, 0)
 
 
@@ -80,4 +81,24 @@ func is_action_just_pressed(action: String):
 
 func is_action_pressed(action: String):
 	return _buffer.get(action, 0) > .49
+
+
+# QOL functions
+func is_equal(to:InputFilter) -> bool:
+	if is_instance_valid(to):
+		return devide_id == to.devide_id and input_group == to.input_group
+	return false
+
+# for serialization
+func _to_string():
+	return "[InputFilter %s devide_id=%s input_group=%s]" % [
+		get_instance_id(), devide_id, input_group
+	]
+
+static func from_string(string:String) -> InputFilter:
+	assert(string.match("[InputFilter * devide_id=* input_group=*]"))
+	var split := string.trim_prefix("[").trim_suffix("]").split(" ")
+	var device := int(split[2].trim_prefix("devide_id="))
+	var group := split[3].trim_prefix("input_group=")
+	return load("./input_filter.gd").new(device, group)
 
