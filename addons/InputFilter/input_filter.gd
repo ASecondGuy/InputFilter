@@ -100,5 +100,5 @@ static func from_string(string:String) -> InputFilter:
 	var split := string.trim_prefix("[").trim_suffix("]").split(" ")
 	var device := int(split[2].trim_prefix("devide_id="))
 	var group := split[3].trim_prefix("input_group=")
-	return load("./input_filter.gd").new(device, group)
+	return load("res://addons/InputFilter/input_filter.gd").new(device, group)
 
