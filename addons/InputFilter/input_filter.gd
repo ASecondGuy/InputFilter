@@ -54,7 +54,7 @@ func is_event_caught(event: InputEvent)->bool:
 # write an event into the buffers. !THIS DOESN'T FILTER! Use parse_input() for filter functionality
 func _parse_event(event: InputEvent):
 	for action in InputMap.get_actions():
-		if action is String:
+		if action is StringName:
 			if event.is_action(action):
 				var strenght := event.get_action_strength(action)
 				
@@ -100,5 +100,5 @@ static func from_string(string:String) -> InputFilter:
 	var split := string.trim_prefix("[").trim_suffix("]").split(" ")
 	var device := int(split[2].trim_prefix("devide_id="))
 	var group := split[3].trim_prefix("input_group=")
-	return load("./input_filter.gd").new(device, group)
+	return load("res://addons/InputFilter/input_filter.gd").new(device, group)
 
