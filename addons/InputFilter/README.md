@@ -42,13 +42,15 @@ It will spawn 1 player for each stick on each controler.
   manually check if event would be caught by the filter
 ## Input like functions
 - `get_axis(negative_action: String, positive_action: String)->float`:  
-  like [Input.get_axis()](https://docs.godotengine.org/en/3.5/classes/class_input.html#class-input-method-get-axis)
+  like [Input.get_axis()](https://docs.godotengine.org/en/stable/classes/class_input.html#class-input-method-get-axis)
+- `get_axis(negative_x:StringName, positive_x:StringName, negative_y:StringName, positive_y:StringName)->Vector2`:  
+  like [Input.get_axis()](https://docs.godotengine.org/en/stable/classes/class_input.html#class-input-method-get-vector) but without deadzone support.
 - `is_action_just_released(action: String)->bool`:  
-	like [Input.is_action_just_released()](https://docs.godotengine.org/en/3.5/classes/class_input.html#class-input-method-is-action-just-released) but doesn't support exact.
+	like [Input.is_action_just_released()](https://docs.godotengine.org/en/stable/classes/class_input.html#class-input-method-is-action-just-released) but doesn't support exact.
 - `is_action_just_pressed(action: String)->bool`:  
-	like [Input.is_action_just_pressed()](https://docs.godotengine.org/en/3.5/classes/class_input.html#class-input-method-is-action-just-pressed) but doesn't support exact.
+	like [Input.is_action_just_pressed()](https://docs.godotengine.org/en/stable/classes/class_input.html#class-input-method-is-action-just-pressed) but doesn't support exact.
 - `is_action_pressed(action: String)->bool`:  
-	like [Input.is_action_pressed()](https://docs.godotengine.org/en/3.5/classes/class_input.html#class-input-method-is-action-pressed) but doesn't support exact.
+	like [Input.is_action_pressed()](https://docs.godotengine.org/en/stable/classes/class_input.html#class-input-method-is-action-pressed) but doesn't support exact.
 ## QOL functions
 - `is_equal(to:InputFilter)->bool`:  
   test if 2 Input filters are the same.
